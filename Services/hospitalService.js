@@ -17,3 +17,6 @@ exports.updateHospital = async (id, updateData) => {
 exports.deleteHospital = async (id) => {
     return await Hospital.findByIdAndDelete(id);
 };
+exports.getHospitalById = async (id) => {
+    return await Hospital.findById(id);
+};

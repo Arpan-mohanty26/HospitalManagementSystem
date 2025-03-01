@@ -52,3 +52,20 @@ exports.deleteHospital = async (req, res) => {
         res.status(500).json({ success: false, message: "Error deleting hospital", error: error.message });
     }
 };
+
+exports.getHospitalDetails = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const hospital = await hospitalService.getHospitalById(id);
+        if (!hospital) {
+            return res.status(404).json({ success: false, message: "Hospital not found" });
+        }
+        res.status(200).json({ success: true, hospital });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error fetching hospital details",
+            error: error.message,
+        });
+    }
+};
